@@ -6,6 +6,6 @@ namespace JacarandaCasaDeBrincar.Data.Repository
 {
     public class StudentRepository : Repository<Student>, IStudentRepository
     {
-        public StudentRepository(JacarandaDbContext context) : base(context) { }{}
+        public StudentRepository(JacarandaDbContext context) : base(context) {}
     }
 }

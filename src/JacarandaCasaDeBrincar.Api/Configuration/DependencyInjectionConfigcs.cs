@@ -16,10 +16,12 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
 
             //Services
             services.AddScoped<IGuardianService, GuardianService>();
+            services.AddScoped<IStudentService, StudentService>();
             //Services
 
             //Repositories
             services.AddScoped<IGuardianRepository, GuardianRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
             //Repositories
 
             return services;

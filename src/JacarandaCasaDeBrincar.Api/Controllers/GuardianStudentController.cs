@@ -16,11 +16,16 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGuardianService _guardianService;
+        private readonly IGuardianRepository _guardianRepository;
 
-        public GuardianStudentController(IMapper mapper,
+        public GuardianStudentController(IGuardianService guardianService,
+                                         IGuardianRepository guardianRepository,
+                                         IMapper mapper, 
                                          INotificator notificator) : base(notificator)
         {
             _mapper = mapper;
+            _guardianService = guardianService;
+            _guardianRepository = guardianRepository;
         }
 
         [HttpPost]
@@ -32,14 +37,28 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
 
             guardians = _mapper.Map<List<Guardian>>(guardianStudentViewModel.Guardians);
 
-            await _guardianService.Add(guardians);
-
             var students = new List<Student>();
 
             students = _mapper.Map<List<Student>>(guardianStudentViewModel.Students);
 
+            foreach(var guardian in guardians)
+            {
+                foreach (var student in students)
+                {
+                    guardian.Students.Add(_mapper.Map<Student>(student));
+                }
+            }
+
+            await _guardianService.Add(guardians);
 
             return CustomResponse(guardianStudentViewModel);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
+        {
+            return CustomResponse(await _guardianRepository.GetAllWithStudents());
         }
     }
 }

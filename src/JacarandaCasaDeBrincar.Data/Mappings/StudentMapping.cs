@@ -9,7 +9,7 @@ namespace JacarandaCasaDeBrincar.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(s => s.Id);
         }
     }
 }
