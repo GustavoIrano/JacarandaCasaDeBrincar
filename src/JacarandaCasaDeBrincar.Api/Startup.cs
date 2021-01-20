@@ -3,17 +3,13 @@ using JacarandaCasaDeBrincar.Api.Configuration;
 using JacarandaCasaDeBrincar.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Api
 {
@@ -30,8 +26,9 @@ namespace JacarandaCasaDeBrincar.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<JacarandaDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<JacarandaDbContext>(options =>
+                options
+                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentityConfiguration(Configuration);
 
@@ -86,7 +83,7 @@ namespace JacarandaCasaDeBrincar.Api
             });
 
             services.ResolveDependencies();
-        }
+        }        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

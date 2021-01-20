@@ -2,6 +2,7 @@
 using JacarandaCasaDeBrincar.Business.Models;
 using JacarandaCasaDeBrincar.Business.Models.Validations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +29,23 @@ namespace JacarandaCasaDeBrincar.Business.Services
             }
 
             await _guardianRepository.Add(guardian);
+            return true;
+        }
+
+        public async Task<bool> Add(List<Guardian> guardians)
+        {
+            foreach(var guardian in guardians)
+            {
+                if (!ExecuteValidation(new GuardianValidation(), guardian)) return false;
+
+                if (_guardianRepository.Search(g => g.Cpf == guardian.Cpf).Result.Any())
+                {
+                    Notify("Já existe um Pai/Mãe/Tutor cadastrado com esse documento.");
+                    return false;
+                }
+            }
+
+            await _guardianRepository.AddRange(guardians);
             return true;
         }
 

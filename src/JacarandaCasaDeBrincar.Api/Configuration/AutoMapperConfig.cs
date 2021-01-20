@@ -9,6 +9,7 @@ namespace JacarandaCasaDeBrincar.Api.Extensions
         public AutoMapperConfig()
         {
             CreateMap<Guardian, GuardianViewModel>().ReverseMap();
+            CreateMap<Student, StudentViewModel>().ReverseMap();
         }
     }
 }

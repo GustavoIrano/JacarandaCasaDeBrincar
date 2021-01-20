@@ -6,6 +6,7 @@ namespace JacarandaCasaDeBrincar.Business.Models
     {
         public string BloodType { get; set; }
         public string Picture { get; set; }
-        public IEnumerable<Guardian> Guardians { get; set; }
+        public string Gender { get; set; }
+        public ICollection<Guardian> Guardians { get; } = new List<Guardian>();
     }
 }

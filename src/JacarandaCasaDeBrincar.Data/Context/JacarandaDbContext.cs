@@ -6,9 +6,12 @@ namespace JacarandaCasaDeBrincar.Data.Context
 {
     public class JacarandaDbContext : DbContext
     {
+        //private readonly StreamWriter _writer = new StreamWriter("LogsEF.txt", append: true);
+
         public JacarandaDbContext(DbContextOptions<JacarandaDbContext> options) : base(options){}
 
         public DbSet<Guardian> Guardians { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,5 +22,21 @@ namespace JacarandaCasaDeBrincar.Data.Context
 
             base.OnModelCreating(modelBuilder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.LogTo(_writer.WriteLine, LogLevel.Information);
+
+            optionsBuilder.EnableDetailedErrors();
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        /*
+        public override void Dispose()
+        {
+            base.Dispose();
+            _writer.Dispose();
+        }*/
     }
 }

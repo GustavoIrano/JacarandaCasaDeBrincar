@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Business.Interfaces
 {
-    public interface IGuardianService : IDisposable
+    public interface IStudentService : IDisposable
     {
-        Task<bool> Add(Guardian guardian);
-        Task<bool> Add(List<Guardian> guardian);
-        Task<bool> Update(Guardian guardian);
+        Task<bool> Add(Student student);
+        Task<bool> Add(List<Student> student);
+        Task<bool> Update(Student student);
         Task<bool> Remove(Guid id);
     }
 }

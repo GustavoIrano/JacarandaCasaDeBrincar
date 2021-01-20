@@ -27,6 +27,12 @@ namespace JacarandaCasaDeBrincar.Data.Repository
             await SaveChanges();
         }
 
+        public virtual async Task AddRange(IEnumerable<TEntity> entities)
+        {
+            DbSet.AddRange(entities);
+            await SaveChanges();
+        }
+
         public virtual async Task<List<TEntity>> GetAll()
         {
             return await DbSet.ToListAsync();
