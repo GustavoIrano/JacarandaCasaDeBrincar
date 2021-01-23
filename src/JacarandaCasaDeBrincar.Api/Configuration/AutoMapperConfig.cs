@@ -13,6 +13,12 @@ namespace JacarandaCasaDeBrincar.Api.Extensions
             CreateMap<Allergie, AllergieViewModel>().ReverseMap();
             CreateMap<Contact, ContactViewModel>().ReverseMap();
             CreateMap<Address, AddressViewModel>().ReverseMap();
+            CreateMap<Capture, CaptureViewModel>().ReverseMap();
+            CreateMap<Campaign, CampaignViewModel>().ReverseMap();
+            CreateMap<HowDidYouknow, HowDidYouknowViewModel>().ReverseMap();
+            CreateMap<FrequencyPackage, FrequencyPackageViewModel>().ReverseMap();
+            CreateMap<InitialContact, InitialContactViewModel>().ReverseMap();
+            CreateMap<NextContact, NextContactViewModel>().ReverseMap();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IAllergieService, AllergieService>();
+            services.AddScoped<ICaptureService, CaptureService>();
             //Services
 
             //Repositories
@@ -26,6 +27,7 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IAllergieRepository, AllergieRepository>();
+            services.AddScoped<ICaptureRepository, CaptureRepository>();
             //Repositories
 
             return services;

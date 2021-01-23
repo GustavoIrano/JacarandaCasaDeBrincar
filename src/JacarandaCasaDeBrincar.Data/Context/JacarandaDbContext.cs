@@ -16,6 +16,16 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Allergie> Allergies { get; set; }
 
+        public DbSet<Capture> Captures { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<ContactType> ContactTypes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<FrequencyPackage> FrequencyPackages { get; set; }
+        public DbSet<HowDidYouknow> HowDidYouknows { get; set; }
+        public DbSet<InitialContact> InitialContacts { get; set; }
+        public DbSet<NextContact> NextContacts { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(JacarandaDbContext).Assembly);

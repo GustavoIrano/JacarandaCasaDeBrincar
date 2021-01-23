@@ -2,5 +2,7 @@
 
 namespace JacarandaCasaDeBrincar.Business.Interfaces
 {
-    public interface IAllergieRepository : IRepository<Allergie>{}
+    public interface IEmployeeRepository : IRepository<Employee>
+    {
+    }
 }
