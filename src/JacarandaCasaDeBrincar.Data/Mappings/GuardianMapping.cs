@@ -30,8 +30,7 @@ namespace JacarandaCasaDeBrincar.Data.Mappings
                 .HasColumnType("varchar(50)");
 
             builder.Property(g => g.Occupation)
-                .HasColumnType("varchar(150)");
-
+                .HasColumnType("varchar(150)");           
 
             builder.ToTable("Guardians", "jacaranda");
         }

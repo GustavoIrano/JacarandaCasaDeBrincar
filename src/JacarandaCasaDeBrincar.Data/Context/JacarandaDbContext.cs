@@ -12,6 +12,9 @@ namespace JacarandaCasaDeBrincar.Data.Context
 
         public DbSet<Guardian> Guardians { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Allergie> Allergies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

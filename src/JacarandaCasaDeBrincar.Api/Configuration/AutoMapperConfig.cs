@@ -10,6 +10,9 @@ namespace JacarandaCasaDeBrincar.Api.Extensions
         {
             CreateMap<Guardian, GuardianViewModel>().ReverseMap();
             CreateMap<Student, StudentViewModel>().ReverseMap();
+            CreateMap<Allergie, AllergieViewModel>().ReverseMap();
+            CreateMap<Contact, ContactViewModel>().ReverseMap();
+            CreateMap<Address, AddressViewModel>().ReverseMap();
         }
     }
 }

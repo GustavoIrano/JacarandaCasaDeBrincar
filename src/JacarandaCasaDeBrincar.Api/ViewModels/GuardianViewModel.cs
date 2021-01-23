@@ -35,7 +35,9 @@ namespace JacarandaCasaDeBrincar.Api.ViewModels
         [StringLength(250, ErrorMessage = "O campo {0} pode ter no máximo {1} caracteres!")]
         public string CompanyName { get; set; }
 
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public bool isReponsable { get; set; }
+
+        public ContactViewModel Contact { get; set; }
+        public AddressViewModel Address { get; set; }
     }
 }
