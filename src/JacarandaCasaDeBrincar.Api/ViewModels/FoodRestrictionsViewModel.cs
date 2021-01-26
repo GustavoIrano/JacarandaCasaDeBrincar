@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JacarandaCasaDeBrincar.Api.ViewModels
 {
-    public class HowDidYouknowViewModel
+    public class FoodRestrictionsViewModel
     {
         [Key]
         public Guid Id { get; set; }

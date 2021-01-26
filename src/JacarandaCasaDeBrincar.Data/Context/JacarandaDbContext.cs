@@ -15,7 +15,6 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Allergie> Allergies { get; set; }
-
         public DbSet<Capture> Captures { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
@@ -24,7 +23,7 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<HowDidYouknow> HowDidYouknows { get; set; }
         public DbSet<InitialContact> InitialContacts { get; set; }
         public DbSet<NextContact> NextContacts { get; set; }
-
+        public DbSet<FoodRestriction> FoodRestrictions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

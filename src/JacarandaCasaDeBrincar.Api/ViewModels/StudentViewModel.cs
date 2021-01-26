@@ -35,5 +35,6 @@ namespace JacarandaCasaDeBrincar.Api.ViewModels
         public string Picture { get; set; }
 
         public List<AllergieViewModel> Allergies { get; set; }
+        public List<FoodRestrictionsViewModel> FoodRestrictions { get; set; }
     }
 }

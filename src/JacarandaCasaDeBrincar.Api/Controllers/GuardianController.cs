@@ -48,7 +48,7 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<GuardianViewModel>(guardian);
         }
 
-        [ClaimsAuthorize("Guardian", "Add")]
+        //[ClaimsAuthorize("Guardian", "Add")]
         [HttpPost]
         public async Task<ActionResult<GuardianViewModel>> Add(GuardianViewModel guardianViewModel)
         {
@@ -60,7 +60,7 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return CustomResponse(guardianViewModel);
         }
 
-        [ClaimsAuthorize("Guardian", "Update")]
+        //[ClaimsAuthorize("Guardian", "Update")]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<GuardianViewModel>> Update(Guid id, GuardianViewModel guardianViewModel)
         {
@@ -77,7 +77,7 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return CustomResponse(guardianViewModel);
         }
 
-        [ClaimsAuthorize("Guardian", "Remove")]
+        //[ClaimsAuthorize("Guardian", "Remove")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<GuardianViewModel>> Remove(Guid id)
         {
