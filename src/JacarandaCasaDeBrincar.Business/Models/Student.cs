@@ -10,5 +10,6 @@ namespace JacarandaCasaDeBrincar.Business.Models
         public ICollection<FoodRestriction> FoodRestrictions { get; } = new List<FoodRestriction>();
         public ICollection<Allergie> Allergies { get; } = new List<Allergie>();
         public ICollection<Guardian> Guardians { get; } = new List<Guardian>();
+        public ICollection<UnauthorizedPerson> UnauthorizedPeople { get; } = new List<UnauthorizedPerson>();
     }
 }

@@ -2,10 +2,8 @@
 
 namespace JacarandaCasaDeBrincar.Business.Models
 {
-    public class FoodRestriction : Entity
+    public class UnauthorizedPerson : Entity
     {
         public string Name { get; set; }
-
-        public ICollection<Student> Students { get; } = new List<Student>();
     }
 }

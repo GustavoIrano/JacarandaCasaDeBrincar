@@ -24,6 +24,9 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<InitialContact> InitialContacts { get; set; }
         public DbSet<NextContact> NextContacts { get; set; }
         public DbSet<FoodRestriction> FoodRestrictions { get; set; }
+        public DbSet<UnauthorizedPerson> UnauthorizedPeople { get; set; }
+
+        public DbSet<AllergieStudent> AllergieStudent { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

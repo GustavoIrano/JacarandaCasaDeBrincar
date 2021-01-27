@@ -20,6 +20,7 @@ namespace JacarandaCasaDeBrincar.Api.Extensions
             CreateMap<InitialContact, InitialContactViewModel>().ReverseMap();
             CreateMap<NextContact, NextContactViewModel>().ReverseMap();
             CreateMap<FoodRestriction, FoodRestrictionsViewModel>().ReverseMap();
+            CreateMap<UnauthorizedPerson, UnauthorizedPersonViewModel>().ReverseMap();
         }
     }
 }
