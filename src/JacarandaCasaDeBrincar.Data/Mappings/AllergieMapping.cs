@@ -12,7 +12,7 @@ namespace JacarandaCasaDeBrincar.Data.Mappings
 
             builder.Property(a => a.Name)
                 .IsRequired()
-                .HasColumnType("varchar(250)");          
+                .HasColumnType("varchar(250)");
 
             builder.ToTable("Allergies", "jacaranda");
         }

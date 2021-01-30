@@ -5,6 +5,7 @@ using JacarandaCasaDeBrincar.Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Api.Controllers
@@ -17,15 +18,21 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         private readonly IMapper _mapper;
         private readonly IGuardianService _guardianService;
         private readonly IGuardianRepository _guardianRepository;
+        private readonly IAllergieRepository _allergieRepository;
+        private readonly IFoodRestrictionRepository _foodRestrictionRepository;
 
         public GuardianStudentController(IGuardianService guardianService,
                                          IGuardianRepository guardianRepository,
-                                         IMapper mapper, 
+                                         IAllergieRepository allergieRepository,
+                                         IFoodRestrictionRepository foodRestrictionRepository,
+                                         IMapper mapper,
                                          INotificator notificator) : base(notificator)
         {
             _mapper = mapper;
             _guardianService = guardianService;
             _guardianRepository = guardianRepository;
+            _allergieRepository = allergieRepository;
+            _foodRestrictionRepository = foodRestrictionRepository;
         }
 
         [HttpPost]
@@ -33,19 +40,53 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var guardians = new List<Guardian>();
-
-            guardians = _mapper.Map<List<Guardian>>(guardianStudentViewModel.Guardians);
+            var guardians = _mapper.Map<List<Guardian>>(guardianStudentViewModel.Guardians);
 
             var students = new List<Student>();
 
-            students = _mapper.Map<List<Student>>(guardianStudentViewModel.Students);
+            var studentsViewModel = _mapper.Map<List<Student>>(guardianStudentViewModel.Students);
 
-            foreach(var guardian in guardians)
+
+            foreach (var student in studentsViewModel)
             {
-                foreach (var student in students)
+                var stu = new Student();
+                stu.BirthDay = student.BirthDay;
+                stu.BloodType = student.BloodType;
+                stu.Cpf = student.Cpf;
+                stu.Gender = student.Gender;
+                stu.Id = student.Id;
+                stu.Name = student.Name;
+                stu.Picture = student.Picture;
+                stu.Rg = student.Rg;
+                
+                foreach (var up in student.UnauthorizedPeople) 
                 {
-                    guardian.Students.Add(_mapper.Map<Student>(student));
+                    stu.UnauthorizedPeople.Add(new UnauthorizedPerson()
+                    {
+                        Id = up.Id,
+                        Name = up.Name
+                    });
+                }
+
+                foreach (var allerie in student.Allergies)
+                {
+
+                    stu.Allergies.Add(await _allergieRepository.GetById(allerie.Id));
+                }
+
+                foreach (var fR in student.FoodRestrictions)
+                {
+                    stu.FoodRestrictions.Add(await _foodRestrictionRepository.GetById(fR.Id));
+                }
+
+                students.Add(stu);
+            }
+
+            foreach(var g in guardians)
+            {
+                foreach(var st in students)
+                {
+                    g.Students.Add(st);
                 }
             }
 

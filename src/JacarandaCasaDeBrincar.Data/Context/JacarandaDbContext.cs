@@ -1,5 +1,6 @@
 ﻿using JacarandaCasaDeBrincar.Business.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace JacarandaCasaDeBrincar.Data.Context
@@ -26,7 +27,7 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<FoodRestriction> FoodRestrictions { get; set; }
         public DbSet<UnauthorizedPerson> UnauthorizedPeople { get; set; }
 
-        public DbSet<AllergieStudent> AllergieStudent { get; set; }
+        //public DbSet<AllergieStudent> AllergieStudent { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
