@@ -18,6 +18,7 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             {
                 options.AddPolicy("Development",
                     builder => builder.AllowAnyOrigin()
+                    .WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
