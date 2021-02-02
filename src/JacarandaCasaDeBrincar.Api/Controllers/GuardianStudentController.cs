@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JacarandaCasaDeBrincar.Api.ViewModels;
+using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
 using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -97,9 +98,19 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult<PagedResponse<IEnumerable<Guardian>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
-            return CustomResponse(await _guardianRepository.GetAllWithStudents());
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+
+            var pagedData = await _guardianRepository.GetAllWithStudents(validFilter);
+
+            var response = new PagedResponse<IEnumerable<Guardian>>(pagedData,
+                validFilter.PageNumber,
+                validFilter.PageSize);
+
+            response.TotalRecords = await _guardianRepository.GetTotalCount();
+
+            return CustomResponse(response);
         }
     }
 }

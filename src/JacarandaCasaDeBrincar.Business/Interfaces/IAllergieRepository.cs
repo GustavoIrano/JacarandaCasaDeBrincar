@@ -1,4 +1,7 @@
-﻿using JacarandaCasaDeBrincar.Business.Models;
+﻿using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
+using JacarandaCasaDeBrincar.Business.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Business.Interfaces
 {

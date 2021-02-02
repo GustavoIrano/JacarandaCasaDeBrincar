@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JacarandaCasaDeBrincar.Api.ViewModels;
+using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
 using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using JacarandaCasaDeBrincar.Business.Services;
@@ -45,9 +46,17 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CaptureViewModel>> GetAll()
+        public async Task<ActionResult<PagedResponse<IEnumerable<CaptureViewModel>>>> GetAll([FromQuery]PaginationFilter paginationFilter)
         {
-            return _mapper.Map<IEnumerable<CaptureViewModel>>(await _captureRepository.GetAllWithAllIncluds());
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+
+            var pagedData = await _captureRepository.GetAllWithAllIncluds(validFilter);
+
+            var response = new PagedResponse<IEnumerable<CaptureViewModel>>(_mapper.Map<IEnumerable<CaptureViewModel>>(pagedData), validFilter.PageNumber, validFilter.PageSize);
+
+            response.TotalRecords = await _captureRepository.GetTotalCount();
+
+            return CustomResponse(response);
         }
 
         [HttpGet("{id:guid}")]

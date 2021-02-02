@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JacarandaCasaDeBrincar.Api.ViewModels;
+using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
 using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -29,9 +30,21 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ContactTypeViewModel>> GetAll()
+        public async Task<ActionResult<PagedResponse<IEnumerable<ContactTypeViewModel>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
-            return _mapper.Map<IEnumerable<ContactTypeViewModel>>(await _contactTypeRepository.GetAll());
+
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+
+            var pagedData = await _contactTypeRepository.GetAllPaginated(validFilter);
+
+            var response = new PagedResponse<IEnumerable<ContactTypeViewModel>>(
+                _mapper.Map<IEnumerable<ContactTypeViewModel>>(pagedData),
+                validFilter.PageNumber,
+                validFilter.PageSize);
+
+            response.TotalRecords = await _contactTypeRepository.GetTotalCount();
+
+            return CustomResponse(response);
         }
 
         [HttpGet("{id:guid}")]

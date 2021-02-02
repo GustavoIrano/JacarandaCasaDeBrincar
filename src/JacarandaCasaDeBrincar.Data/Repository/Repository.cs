@@ -1,4 +1,5 @@
-﻿using JacarandaCasaDeBrincar.Business.Interfaces;
+﻿using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
+using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using JacarandaCasaDeBrincar.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -33,9 +34,19 @@ namespace JacarandaCasaDeBrincar.Data.Repository
             await SaveChanges();
         }
 
+        public virtual async Task<int> GetTotalCount()
+        {
+            return await DbSet.CountAsync();
+        }
+
         public virtual async Task<List<TEntity>> GetAll()
         {
             return await DbSet.ToListAsync();
+        }
+
+        public virtual async Task<List<TEntity>> GetAllPaginated(PaginationFilter paginationFilter)
+        {
+            return await DbSet.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize).Take(paginationFilter.PageSize).ToListAsync();
         }
 
         public virtual async Task<TEntity> GetById(Guid id)

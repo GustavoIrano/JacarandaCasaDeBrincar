@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using JacarandaCasaDeBrincar.Api.ViewModels;
+using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
 using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Api.Controllers
@@ -31,9 +30,20 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<FoodRestrictionsViewModel>> GetAll()
+        public async Task<ActionResult<PagedResponse<IEnumerable<FoodRestrictionsViewModel>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
-            return _mapper.Map<IEnumerable<FoodRestrictionsViewModel>>(await _foodRestrictionRepository.GetAll());
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+
+            var pagedData = await _foodRestrictionRepository.GetAllPaginated(validFilter);
+
+            var response = new PagedResponse<IEnumerable<FoodRestrictionsViewModel>>(
+                _mapper.Map<IEnumerable<FoodRestrictionsViewModel>>(pagedData),
+                validFilter.PageNumber,
+                validFilter.PageSize);
+
+            response.TotalRecords = await _foodRestrictionRepository.GetTotalCount();
+
+            return CustomResponse(response);
         }
 
         [HttpGet("{id:guid}")]

@@ -6,6 +6,6 @@ namespace JacarandaCasaDeBrincar.Data.Repository
 {
     public class AllergieRepository : Repository<Allergie>, IAllergieRepository
     {
-        public AllergieRepository(JacarandaDbContext context) : base(context) { }
+        public AllergieRepository(JacarandaDbContext context) : base(context) {}
     }
 }

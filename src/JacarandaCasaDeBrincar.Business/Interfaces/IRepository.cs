@@ -1,4 +1,5 @@
-﻿using JacarandaCasaDeBrincar.Business.Models;
+﻿using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
+using JacarandaCasaDeBrincar.Business.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -16,5 +17,7 @@ namespace JacarandaCasaDeBrincar.Business.Interfaces
         Task Remove(Guid id);
         Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();
+        Task<int> GetTotalCount();
+        Task<List<TEntity>> GetAllPaginated(PaginationFilter paginationFilter);
     }
 }
