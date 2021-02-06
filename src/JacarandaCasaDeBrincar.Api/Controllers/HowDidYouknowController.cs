@@ -56,6 +56,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<HowDidYouknowViewModel>(howDidYouknow);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<HowDidYouknowViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<HowDidYouknowViewModel>>(await _howDidYouknowRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<HowDidYouknowViewModel>> Add(HowDidYouknowViewModel howDidYouknowViewModel)
         {

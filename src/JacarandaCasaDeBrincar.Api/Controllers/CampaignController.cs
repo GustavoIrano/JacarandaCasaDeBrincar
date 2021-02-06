@@ -56,6 +56,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<CampaignViewModel>(campaign);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<CampaignViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<CampaignViewModel>>(await _campaignRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<CampaignViewModel>> Add(CampaignViewModel campaignViewModel)
         {

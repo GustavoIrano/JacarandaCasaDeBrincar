@@ -57,6 +57,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<ContactTypeViewModel>(contactType);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<ContactTypeViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<ContactTypeViewModel>>(await _contactTypeRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<ContactTypeViewModel>> Add(ContactTypeViewModel contactTypeViewModel)
         {

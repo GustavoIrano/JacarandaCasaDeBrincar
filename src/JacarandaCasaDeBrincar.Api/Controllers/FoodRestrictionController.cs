@@ -56,6 +56,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<FoodRestrictionsViewModel>(foodRestriction);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<FoodRestrictionsViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<FoodRestrictionsViewModel>>(await _foodRestrictionRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<FoodRestrictionsViewModel>> Add(FoodRestrictionsViewModel foodRestrictionsViewModel)
         {

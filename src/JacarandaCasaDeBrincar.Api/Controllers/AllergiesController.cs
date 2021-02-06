@@ -56,6 +56,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<AllergieViewModel>(allergie);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<AllergieViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<AllergieViewModel>>(await _allergieRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<AllergieViewModel>> Add(AllergieViewModel allergieViewModel)
         {

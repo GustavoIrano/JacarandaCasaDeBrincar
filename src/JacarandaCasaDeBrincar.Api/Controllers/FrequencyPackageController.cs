@@ -56,6 +56,12 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
             return _mapper.Map<FrequencyPackageViewModel>(frequencyPackage);
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<List<FrequencyPackageViewModel>>> GetByName(string name)
+        {
+            return _mapper.Map<List<FrequencyPackageViewModel>>(await _frequencyPackageRepository.GetByName(name));
+        }
+
         [HttpPost]
         public async Task<ActionResult<FrequencyPackageViewModel>> Add(FrequencyPackageViewModel frequencyPackageViewModel)
         {

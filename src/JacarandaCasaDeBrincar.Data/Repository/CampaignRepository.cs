@@ -11,6 +11,18 @@ namespace JacarandaCasaDeBrincar.Data.Repository
 {
     public class CampaignRepository : Repository<Campaign>, ICampaignRepository
     {
-        public CampaignRepository(JacarandaDbContext context) : base(context){}
+        private readonly JacarandaDbContext _context;
+
+        public CampaignRepository(JacarandaDbContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public Task<List<Campaign>> GetByName(string name)
+        {
+            return _context.Campaigns
+                .Where(a => a.Name.Contains(name))
+                .ToListAsync();
+        }
     }
 }

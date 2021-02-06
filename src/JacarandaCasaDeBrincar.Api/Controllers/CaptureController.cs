@@ -46,11 +46,11 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagedResponse<IEnumerable<CaptureViewModel>>>> GetAll([FromQuery]PaginationFilter paginationFilter)
+        public async Task<ActionResult<PagedResponse<IEnumerable<CaptureViewModel>>>> GetAll([FromQuery]PaginationFilter paginationFilter, DateTime data)
         {
             var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
-            var pagedData = await _captureRepository.GetAllWithAllIncluds(validFilter);
+            var pagedData = await _captureRepository.GetAllWithAllIncluds(validFilter, data);
 
             var response = new PagedResponse<IEnumerable<CaptureViewModel>>(_mapper.Map<IEnumerable<CaptureViewModel>>(pagedData), validFilter.PageNumber, validFilter.PageSize);
 

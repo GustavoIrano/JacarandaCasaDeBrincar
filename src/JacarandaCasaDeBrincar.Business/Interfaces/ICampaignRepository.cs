@@ -5,5 +5,8 @@ using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Business.Interfaces
 {
-    public interface ICampaignRepository : IRepository<Campaign>{}
+    public interface ICampaignRepository : IRepository<Campaign>
+    {
+        Task<List<Campaign>> GetByName(string name);
+    }
 }
