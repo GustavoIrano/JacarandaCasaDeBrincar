@@ -21,6 +21,7 @@ namespace JacarandaCasaDeBrincar.Data.Repository
         public Task<List<Guardian>> GetAllWithStudents(PaginationFilter paginationFilter)
         {
             return _context.Guardians
+                .Where(a => paginationFilter.Name != null ? a.Name.Contains(paginationFilter.Name) : a.Name != null)
                 .Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
                 .Take(paginationFilter.PageSize)
                 .Include(g => g.Students)

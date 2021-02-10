@@ -1,4 +1,5 @@
-﻿using JacarandaCasaDeBrincar.Business.Interfaces;
+﻿using JacarandaCasaDeBrincar.Api.ViewModels.Pagination;
+using JacarandaCasaDeBrincar.Business.Interfaces;
 using JacarandaCasaDeBrincar.Business.Models;
 using JacarandaCasaDeBrincar.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,15 @@ namespace JacarandaCasaDeBrincar.Data.Repository
         {
             return _context.Allergies
                 .Where(a => a.Name.Contains(name))
+                .ToListAsync();
+        }
+
+        public Task<List<Allergie>> GetPaginated(PaginationFilter paginationFilter)
+        {
+            return _context.Allergies
+                .Where(a => paginationFilter.Name != null ? a.Name.Contains(paginationFilter.Name) : a.Name != null)
+                .Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                .Take(paginationFilter.PageSize)
                 .ToListAsync();
         }
     }

@@ -33,9 +33,9 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         public async Task<ActionResult<PagedResponse<IEnumerable<ContactTypeViewModel>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
 
-            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize, paginationFilter.Name);
 
-            var pagedData = await _contactTypeRepository.GetAllPaginated(validFilter);
+            var pagedData = await _contactTypeRepository.GetPaginated(validFilter);
 
             var response = new PagedResponse<IEnumerable<ContactTypeViewModel>>(
                 _mapper.Map<IEnumerable<ContactTypeViewModel>>(pagedData),

@@ -8,5 +8,6 @@ namespace JacarandaCasaDeBrincar.Business.Interfaces
     public interface ICampaignRepository : IRepository<Campaign>
     {
         Task<List<Campaign>> GetByName(string name);
+        Task<List<Campaign>> GetPaginated(PaginationFilter paginationFilter);
     }
 }

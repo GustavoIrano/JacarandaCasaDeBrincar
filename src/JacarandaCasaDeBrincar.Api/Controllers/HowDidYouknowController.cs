@@ -32,9 +32,9 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<PagedResponse<IEnumerable<HowDidYouknowViewModel>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
-            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize, paginationFilter.Name);
 
-            var pagedData = await _howDidYouknowRepository.GetAllPaginated(validFilter);
+            var pagedData = await _howDidYouknowRepository.GetPaginated(validFilter);
 
             var response = new PagedResponse<IEnumerable<HowDidYouknowViewModel>>(
                 _mapper.Map<IEnumerable<HowDidYouknowViewModel>>(pagedData),

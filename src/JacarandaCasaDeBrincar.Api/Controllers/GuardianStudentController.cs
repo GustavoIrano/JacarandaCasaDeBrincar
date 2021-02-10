@@ -100,7 +100,7 @@ namespace JacarandaCasaDeBrincar.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<PagedResponse<IEnumerable<Guardian>>>> GetAll([FromQuery] PaginationFilter paginationFilter)
         {
-            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+            var validFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize, paginationFilter.Name);
 
             var pagedData = await _guardianRepository.GetAllWithStudents(validFilter);
 

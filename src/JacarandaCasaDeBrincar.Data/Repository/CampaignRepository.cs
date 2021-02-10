@@ -24,5 +24,13 @@ namespace JacarandaCasaDeBrincar.Data.Repository
                 .Where(a => a.Name.Contains(name))
                 .ToListAsync();
         }
+        public Task<List<Campaign>> GetPaginated(PaginationFilter paginationFilter)
+        {
+            return _context.Campaigns
+                .Where(a => paginationFilter.Name != null ? a.Name.Contains(paginationFilter.Name) : a.Name != null)
+                .Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                .Take(paginationFilter.PageSize)
+                .ToListAsync();
+        }
     }
 }
