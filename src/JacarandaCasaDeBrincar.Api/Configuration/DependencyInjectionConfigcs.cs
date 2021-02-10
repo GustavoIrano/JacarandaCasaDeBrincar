@@ -26,6 +26,8 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IContactTypeService, ContactTypeService>();
             services.AddScoped<IHowDidYouKnowService, HowDidYouknowService>();
             services.AddScoped<IFrequencyPackageService, FrequencyPackageService>();
+            services.AddScoped<IPaymentMethodService, PaymentMethodService>();
+            services.AddScoped<IFormOfPaymentService, FormOfPaymentService>();
             //Services
 
             //Repositories
@@ -40,6 +42,8 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
             services.AddScoped<IHowDidYouknowRepository, HowDidYouknowRepository>();
             services.AddScoped<IFrequencyPackageRepository, FrequencyPackageRepository>();
+            services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
+            services.AddScoped<IFormOfPaymentRepository, FormOfPaymentRepository>();
             //Repositories
 
             return services;

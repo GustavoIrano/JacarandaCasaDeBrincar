@@ -22,4 +22,8 @@
     <ProjectReference Include="..\JacarandaCasaDeBrincar.Business\JacarandaCasaDeBrincar.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

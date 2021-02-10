@@ -23,6 +23,8 @@ namespace JacarandaCasaDeBrincar.Api.Extensions
             CreateMap<UnauthorizedPerson, UnauthorizedPersonViewModel>().ReverseMap();
             CreateMap<ContactType, ContactTypeViewModel>().ReverseMap();
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
+            CreateMap<FormOfPayment, FormOfPaymentViewModel>().ReverseMap();
+            CreateMap<PaymentMethod, PaymentMethodViewModel>().ReverseMap();
         }
     }
 }

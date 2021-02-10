@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JacarandaCasaDeBrincar.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,6 +114,19 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormOfPayments",
+                schema: "jacaranda",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(250)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormOfPayments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FrequencyPackages",
                 schema: "jacaranda",
                 columns: table => new
@@ -140,6 +153,19 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentMethods",
+                schema: "jacaranda",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(250)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentMethods", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 schema: "jacaranda",
                 columns: table => new
@@ -156,19 +182,6 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UnauthorizedPeople",
-                schema: "jacaranda",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "varchar(250)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UnauthorizedPeople", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,28 +335,23 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentUnauthorizedPerson",
+                name: "UnauthorizedPeople",
                 schema: "jacaranda",
                 columns: table => new
                 {
-                    StudentsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UnauthorizedPeopleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(250)", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    StudentId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentUnauthorizedPerson", x => new { x.StudentsId, x.UnauthorizedPeopleId });
+                    table.PrimaryKey("PK_UnauthorizedPeople", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentUnauthorizedPerson_Students_StudentsId",
-                        column: x => x.StudentsId,
+                        name: "FK_UnauthorizedPeople_Students_StudentId1",
+                        column: x => x.StudentId1,
                         principalSchema: "jacaranda",
                         principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StudentUnauthorizedPerson_UnauthorizedPeople_UnauthorizedPeopleId",
-                        column: x => x.UnauthorizedPeopleId,
-                        principalSchema: "jacaranda",
-                        principalTable: "UnauthorizedPeople",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -514,10 +522,10 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 column: "ResponsibleEmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentUnauthorizedPerson_UnauthorizedPeopleId",
+                name: "IX_UnauthorizedPeople_StudentId1",
                 schema: "jacaranda",
-                table: "StudentUnauthorizedPerson",
-                column: "UnauthorizedPeopleId");
+                table: "UnauthorizedPeople",
+                column: "StudentId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -535,11 +543,19 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 schema: "jacaranda");
 
             migrationBuilder.DropTable(
+                name: "FormOfPayments",
+                schema: "jacaranda");
+
+            migrationBuilder.DropTable(
                 name: "GuardianStudent",
                 schema: "jacaranda");
 
             migrationBuilder.DropTable(
-                name: "StudentUnauthorizedPerson",
+                name: "PaymentMethods",
+                schema: "jacaranda");
+
+            migrationBuilder.DropTable(
+                name: "UnauthorizedPeople",
                 schema: "jacaranda");
 
             migrationBuilder.DropTable(
@@ -576,10 +592,6 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students",
-                schema: "jacaranda");
-
-            migrationBuilder.DropTable(
-                name: "UnauthorizedPeople",
                 schema: "jacaranda");
 
             migrationBuilder.DropTable(

@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace JacarandaCasaDeBrincar.Business.Interfaces
 {
-    public interface IAllergieService : IDisposable
+    public interface IPaymentMethodService : IDisposable
     {
-        Task<bool> Add(Allergie allergie);        
-        Task<bool> Update(Allergie allergie);
+        Task<bool> Add(PaymentMethod paymentMethod);
+        Task<bool> Update(PaymentMethod paymentMethod);
         Task<bool> Remove(Guid id);
     }
 }

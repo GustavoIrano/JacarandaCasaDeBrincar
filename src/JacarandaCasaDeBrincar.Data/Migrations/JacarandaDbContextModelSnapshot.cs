@@ -19,36 +19,6 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("AllergieStudent", b =>
-                {
-                    b.Property<Guid>("AllergiesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StudentsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AllergiesId", "StudentsId");
-
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("AllergieStudent");
-                });
-
-            modelBuilder.Entity("FoodRestrictionStudent", b =>
-                {
-                    b.Property<Guid>("FoodRestrictionsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StudentsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FoodRestrictionsId", "StudentsId");
-
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("FoodRestrictionStudent");
-                });
-
             modelBuilder.Entity("GuardianStudent", b =>
                 {
                     b.Property<Guid>("GuardiansId")
@@ -253,6 +223,21 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                     b.ToTable("FoodRestrictions", "jacaranda");
                 });
 
+            modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.FormOfPayment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormOfPayments", "jacaranda");
+                });
+
             modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.FrequencyPackage", b =>
                 {
                     b.Property<Guid>("Id")
@@ -388,6 +373,21 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                     b.ToTable("NextContacts", "jacaranda");
                 });
 
+            modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.PaymentMethod", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentMethods", "jacaranda");
+                });
+
             modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.Student", b =>
                 {
                     b.Property<Guid>("Id")
@@ -433,50 +433,47 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("StudentId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentId1");
 
                     b.ToTable("UnauthorizedPeople", "jacaranda");
                 });
 
-            modelBuilder.Entity("StudentUnauthorizedPerson", b =>
+            modelBuilder.Entity("jacaranda.AllergieStudent", b =>
                 {
+                    b.Property<Guid>("AllergiesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("StudentsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UnauthorizedPeopleId")
+                    b.HasKey("AllergiesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("AllergieStudent");
+                });
+
+            modelBuilder.Entity("jacaranda.FoodRestrictionStudent", b =>
+                {
+                    b.Property<Guid>("FoodRestrictionsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("StudentsId", "UnauthorizedPeopleId");
+                    b.Property<Guid>("StudentsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("UnauthorizedPeopleId");
+                    b.HasKey("FoodRestrictionsId", "StudentsId");
 
-                    b.ToTable("StudentUnauthorizedPerson");
-                });
+                    b.HasIndex("StudentsId");
 
-            modelBuilder.Entity("AllergieStudent", b =>
-                {
-                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Allergie", null)
-                        .WithMany()
-                        .HasForeignKey("AllergiesId")
-                        .IsRequired();
-
-                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FoodRestrictionStudent", b =>
-                {
-                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.FoodRestriction", null)
-                        .WithMany()
-                        .HasForeignKey("FoodRestrictionsId")
-                        .IsRequired();
-
-                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .IsRequired();
+                    b.ToTable("FoodRestrictionStudent");
                 });
 
             modelBuilder.Entity("GuardianStudent", b =>
@@ -570,17 +567,44 @@ namespace JacarandaCasaDeBrincar.Data.Migrations
                     b.Navigation("ResponsibleEmployee");
                 });
 
-            modelBuilder.Entity("StudentUnauthorizedPerson", b =>
+            modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.UnauthorizedPerson", b =>
                 {
+                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Student", "Student")
+                        .WithMany("UnauthorizedPeople")
+                        .HasForeignKey("StudentId1");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("jacaranda.AllergieStudent", b =>
+                {
+                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Allergie", null)
+                        .WithMany()
+                        .HasForeignKey("AllergiesId")
+                        .IsRequired();
+
                     b.HasOne("JacarandaCasaDeBrincar.Business.Models.Student", null)
                         .WithMany()
                         .HasForeignKey("StudentsId")
                         .IsRequired();
+                });
 
-                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.UnauthorizedPerson", null)
+            modelBuilder.Entity("jacaranda.FoodRestrictionStudent", b =>
+                {
+                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.FoodRestriction", null)
                         .WithMany()
-                        .HasForeignKey("UnauthorizedPeopleId")
+                        .HasForeignKey("FoodRestrictionsId")
                         .IsRequired();
+
+                    b.HasOne("JacarandaCasaDeBrincar.Business.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("JacarandaCasaDeBrincar.Business.Models.Student", b =>
+                {
+                    b.Navigation("UnauthorizedPeople");
                 });
 #pragma warning restore 612, 618
         }
