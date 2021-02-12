@@ -28,7 +28,7 @@ namespace JacarandaCasaDeBrincar.Data.Context
         public DbSet<UnauthorizedPerson> UnauthorizedPeople { get; set; }
         public DbSet<FormOfPayment> FormOfPayments { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
-
+        public DbSet<Sale> Sales { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(JacarandaDbContext).Assembly);

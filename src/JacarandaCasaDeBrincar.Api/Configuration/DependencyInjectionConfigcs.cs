@@ -28,6 +28,7 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IFrequencyPackageService, FrequencyPackageService>();
             services.AddScoped<IPaymentMethodService, PaymentMethodService>();
             services.AddScoped<IFormOfPaymentService, FormOfPaymentService>();
+            services.AddScoped<ISaleService, SaleService>();
             //Services
 
             //Repositories
@@ -44,6 +45,7 @@ namespace JacarandaCasaDeBrincar.Api.Configuration
             services.AddScoped<IFrequencyPackageRepository, FrequencyPackageRepository>();
             services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
             services.AddScoped<IFormOfPaymentRepository, FormOfPaymentRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
             //Repositories
 
             return services;
