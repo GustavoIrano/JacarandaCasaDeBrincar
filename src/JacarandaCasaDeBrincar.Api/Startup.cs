@@ -1,5 +1,6 @@
 using AutoMapper;
 using JacarandaCasaDeBrincar.Api.Configuration;
+using JacarandaCasaDeBrincar.Api.Data;
 using JacarandaCasaDeBrincar.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -88,7 +89,10 @@ namespace JacarandaCasaDeBrincar.Api
         }        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+                              IWebHostEnvironment env, 
+                              ApplicationDbContext identityDbContext, 
+                              JacarandaDbContext jacarandaDbContext)
         {
             if (env.IsDevelopment())
             {
@@ -106,6 +110,10 @@ namespace JacarandaCasaDeBrincar.Api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            identityDbContext.Database.Migrate(); 
+            
+            jacarandaDbContext.Database.Migrate();
 
             app.UseSwagger();
 

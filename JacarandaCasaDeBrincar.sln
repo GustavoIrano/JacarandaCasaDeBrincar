@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JacarandaCasaDeBrincar.Business", "src\JacarandaCasaDeBrincar.Business\JacarandaCasaDeBrincar.Business.csproj", "{1833F6FA-1C74-4F2A-B81F-1BA67E1BA48C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JacarandaCasaDeBrincar.Business", "src\JacarandaCasaDeBrincar.Business\JacarandaCasaDeBrincar.Business.csproj", "{1833F6FA-1C74-4F2A-B81F-1BA67E1BA48C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JacarandaCasaDeBrincar.Data", "src\JacarandaCasaDeBrincar.Data\JacarandaCasaDeBrincar.Data.csproj", "{E98C7056-70BA-4F48-9525-331D37611BBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JacarandaCasaDeBrincar.Data", "src\JacarandaCasaDeBrincar.Data\JacarandaCasaDeBrincar.Data.csproj", "{E98C7056-70BA-4F48-9525-331D37611BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JacarandaCasaDeBrincar.Api", "src\JacarandaCasaDeBrincar.Api\JacarandaCasaDeBrincar.Api.csproj", "{D33813F0-1D65-40B3-932C-3EC7993E12A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JacarandaCasaDeBrincar.Api", "src\JacarandaCasaDeBrincar.Api\JacarandaCasaDeBrincar.Api.csproj", "{D33813F0-1D65-40B3-932C-3EC7993E12A4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E2330E86-AA5E-4D3F-BCFF-4F35045CBCCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D33813F0-1D65-40B3-932C-3EC7993E12A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D33813F0-1D65-40B3-932C-3EC7993E12A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D33813F0-1D65-40B3-932C-3EC7993E12A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2330E86-AA5E-4D3F-BCFF-4F35045CBCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2330E86-AA5E-4D3F-BCFF-4F35045CBCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2330E86-AA5E-4D3F-BCFF-4F35045CBCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2330E86-AA5E-4D3F-BCFF-4F35045CBCCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
